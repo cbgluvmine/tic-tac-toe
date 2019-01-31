@@ -1,0 +1,158 @@
+from random import *
+
+board_str = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
+game_ended = False
+play_again = True
+dashes = 0
+def print_board():
+    print("\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", board_str[0], board_str[1], board_str[2], "\n", board_str[3], board_str[4], board_str[5], "\n", board_str[6], board_str[7], board_str[8], "\n")
+
+def human_input():
+    # Human input
+    num = input("Select a num to cover - with a X ")
+    while num.isnumeric() == False:
+        num = input("Select a num to cover - with a X ")
+    numgreater = False
+    numless = False
+    num = int(num)
+
+    if num > 9:
+        numgreater = True
+    if num < 1:
+        numless = True
+
+    while numless or numgreater:
+        num = str(num)
+        while num.isnumeric() == False:
+            num = input("Select a num to cover - with a X ")
+        num = int(num)
+        num = int(input("Select a number less than 9 and larger than 0 to cover - with a X " ))
+
+    if board_str[num - 1] == "0" or board_str[num - 1] == "X":
+        num = int(input("Select a num to cover - with a X "))
+
+    if board_str[num - 1] == "-" or board_str[num - 1] == "-\n":
+        board_str[num - 1] = "X"
+def computerinput():
+    num = randint(1, 9)
+
+    while board_str[num - 1] == "X" or board_str[num - 1] == "0":
+        num = randint(1, 9)
+
+    if board_str[num - 1] == "-" or board_str[num - 1] == "-\n":
+        board_str[num - 1] = "0"
+
+def clear():
+    print("\n","\n","\n","\n","\n","\n","\n","\n","\n","\n","\n","\n","\n","\n","\n","\n","\n",)
+
+
+while play_again != False:
+    play_again = False
+    while game_ended != True:
+        print_board()
+        human_input()
+        for char in board_str:
+            if char == "-":
+                dashes += 1
+        if dashes == 0:
+            game_ended = True
+            print("Draw!")
+            print("\n")
+            again = input("Play Again? y/n ")
+            if again == 'y':
+                play_again = True
+                game_ended = False
+                board_str = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
+                dashes = 0
+        dashes = 0
+        computerinput()
+        for char in board_str:
+            if char == "-":
+                dashes += 1
+        if dashes == 0:
+            game_ended = True
+            print("Draw!")
+            print("\n")
+            again = input("Play Again? y/n ")
+            if again == 'y':
+                play_again = True
+                game_ended = False
+                board_str = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
+                dashes = 0
+        dashes = 0
+        # Horizontal win
+        if board_str[0] == "X" and board_str[1] == "X" and board_str[2] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+        if board_str[3] == "X" and board_str[4] == "X" and board_str[5] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+        if board_str[6] == "X" and board_str[7] == "X" and board_str[8] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+        if board_str[0] == "X" and board_str[3] == "X" and board_str[6] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+        if board_str[1] == "X" and board_str[4] == "X" and board_str[7] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+        if board_str[2] == "X" and board_str[5] == "X" and board_str[8] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+        if board_str[0] == "X" and board_str[4] == "X" and board_str[8] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+        if board_str[2] == "X" and board_str[4] == "X" and board_str[6] == "X":
+            clear()
+            print("Player Wins")
+            game_ended = True
+
+        # Computer
+        # Horizontal win
+        if board_str[0] == "0" and board_str[1] == "0" and board_str[2] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+        if board_str[3] == "0" and board_str[4] == "0" and board_str[5] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+        if board_str[6] == "0" and board_str[7] == "0" and board_str[8] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+        if board_str[0] == "0" and board_str[3] == "0" and board_str[6] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+        if board_str[1] == "0" and board_str[4] == "0" and board_str[7] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+        if board_str[2] == "0" and board_str[5] == "0" and board_str[8] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+        if board_str[0] == "0" and board_str[4] == "0" and board_str[8] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+        if board_str[2] == "0" and board_str[4] == "0" and board_str[6] == "0":
+            clear()
+            print("Computer Wins")
+            game_ended = True
+    print("\n")
+    again = input("Play Again? y/n ")
+    if again == 'y':
+        play_again = True
+        game_ended = False
+        board_str = ["-", "-", "-", "-", "-", "-", "-", "-", "-"]
+        dashes = 0
+    clear()
